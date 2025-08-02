@@ -62,6 +62,20 @@ async function bootstrap() {
 
   app.use('/store', express.static(join(ROOT_DIR, 'store')));
 
+// rota temporária só pra liberar o front
+app.get("/instances", (req, res) => {
+  return res.json([
+    {
+      id: "mock-01",
+      name: "Instância de Teste",
+      status: "connected",
+      phone: "5599999999999"
+    }
+  ]);
+});
+
+
+
   app.use('/', router);
 
   app.use(
@@ -156,3 +170,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+

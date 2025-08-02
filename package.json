@@ -3,7 +3,7 @@
   "version": "2.3.1",
   "description": "Rest api for communication with WhatsApp",
   "main": "./dist/main.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "build": "tsc --noEmit && tsup",
     "start": "tsx ./src/main.ts",
@@ -102,6 +102,7 @@
     "socket.io-client": "^4.8.1",
     "swagger-ui-express": "^5.0.1",
     "tsup": "^8.3.5"
+
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
