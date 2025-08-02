@@ -21,12 +21,13 @@ COPY ./prisma ./prisma
 COPY ./manager ./manager
 COPY ./.env.example ./.env
 COPY ./runWithProvider.js ./
-
 COPY ./Docker ./Docker
 
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
 
-# RUN ./Docker/scripts/generate_database.sh
+# Etapas do Prisma
+COPY ./prisma/schema.prisma ./schema.prisma
+RUN npx prisma generate
 
 RUN npm run build
 
@@ -53,8 +54,7 @@ COPY --from=builder /evolution/Docker ./Docker
 COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
 COPY --from=builder /evolution/tsup.config.ts ./tsup.config.ts
 
-ENV DOCKER_ENV=true
-
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && npm run start:prod" ]
+# Evita travar se o deploy do banco falhar
+ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh || echo 'DB skipped'; npm run start:prod"]
