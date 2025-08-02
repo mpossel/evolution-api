@@ -20,7 +20,7 @@ COPY ./public ./public
 COPY ./prisma ./prisma
 COPY ./manager ./manager
 COPY ./.env.example ./.env
-COPY ./runWithProvider.js ./
+COPY ./runWithProvider.cjs ./
 COPY ./Docker ./Docker
 
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
@@ -57,4 +57,5 @@ COPY --from=builder /evolution/tsup.config.ts ./tsup.config.ts
 EXPOSE 8080
 
 # Evita travar se o deploy do banco falhar
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh || echo 'DB skipped'; npm run start:prod"]
+ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && npm run start:prod" ]
+
