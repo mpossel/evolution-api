@@ -51,11 +51,5 @@ COPY --from=builder /evolution/manager ./manager
 COPY --from=builder /evolution/public ./public
 COPY --from=builder /evolution/.env ./.env
 COPY --from=builder /evolution/Docker ./Docker
-COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
-COPY --from=builder /evolution/tsup.config.ts ./tsup.config.ts
-
-EXPOSE 8080
-
-# Evita travar se o deploy do banco falhar
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && npm run start:prod" ]
-
+COPY --from=builder /evolution/runWithProvider.cjs ./runWithProvider.cjs
+CO
