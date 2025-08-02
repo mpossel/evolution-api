@@ -52,5 +52,5 @@ COPY --from=builder /evolution/public ./public
 COPY --from=builder /evolution/.env ./.env
 COPY --from=builder /evolution/Docker ./Docker
 COPY --from=builder /evolution/runWithProvider.cjs ./runWithProvider.cjs
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && npm run start:prod" ]
+ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && node dist/main" ]
 
