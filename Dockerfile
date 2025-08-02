@@ -52,4 +52,4 @@ COPY --from=builder /evolution/public ./public
 COPY --from=builder /evolution/.env ./.env
 COPY --from=builder /evolution/Docker ./Docker
 COPY --from=builder /evolution/runWithProvider.cjs ./runWithProvider.cjs
-CO
+
