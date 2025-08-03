@@ -162,7 +162,7 @@ app.get("/instances", (req, res) => {
     Sentry.setupExpressErrorHandler(app);
   }
 
-  httpServer.PORT = process.env.PORT || 3000;
+  httpServer.PORT = Number(process.env.PORT) || 3000;
 
   server.listen(httpServer.PORT, () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
 
