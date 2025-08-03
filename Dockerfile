@@ -65,4 +65,5 @@ COPY --from=builder /evolution/runWithProvider.cjs ./runWithProvider.cjs
 RUN chmod +x ./Docker/scripts/deploy_database.sh && dos2unix ./Docker/scripts/deploy_database.sh
 
 # Comando de entrada
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && node dist/main" ]
+ENTRYPOINT ["/bin/bash", "-c", "chmod +x ./Docker/scripts/deploy_database.sh && dos2unix ./Docker/scripts/deploy_database.sh && ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && node dist/main"]
+
