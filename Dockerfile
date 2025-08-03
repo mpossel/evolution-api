@@ -67,3 +67,5 @@ RUN chmod +x ./Docker/scripts/deploy_database.sh && dos2unix ./Docker/scripts/de
 # Comando de entrada
 ENTRYPOINT ["/bin/bash", "-c", "chmod +x ./Docker/scripts/deploy_database.sh && dos2unix ./Docker/scripts/deploy_database.sh && ./Docker/scripts/deploy_database.sh && node runWithProvider.cjs && node dist/main"]
 
+EXPOSE 3000
+
