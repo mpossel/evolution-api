@@ -3,22 +3,26 @@
   "version": "2.3.1",
   "description": "Rest api for communication with WhatsApp",
   "main": "./dist/main.js",
-  "type": "commonjs",
-  "scripts": {
-    "build": "tsc --noEmit && tsup",
-    "start": "tsx ./src/main.ts",
-    "start:prod": "node dist/main",
-    "dev:server": "tsx watch ./src/main.ts",
-    "test": "tsx watch ./test/all.test.ts",
-    "lint": "eslint --fix --ext .ts src",
-    "lint:check": "eslint --ext .ts src",
-    "db:generate": "node runWithProvider.cjs \"npx prisma generate --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:deploy": "node runWithProvider.cjs \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate deploy --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:deploy:win": "node runWithProvider.cjs \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate deploy --schema prisma\\DATABASE_PROVIDER-schema.prisma\"",
-    "db:studio": "node runWithProvider.cjs \"npx prisma studio --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:migrate:dev": "node runWithProvider.cjs \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate dev --schema ./prisma/DATABASE_PROVIDER-schema.prisma && cp -r ./prisma/migrations/* ./prisma/DATABASE_PROVIDER-migrations\"",
-    "db:migrate:dev:win": "node runWithProvider.cjs \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate dev --schema prisma\\DATABASE_PROVIDER-schema.prisma\""
-  },
+  "type": "module",
+"scripts": {
+  "build": "tsc --noEmit && tsup",
+  "start": "tsx ./src/main.ts",
+  "start:prod": "node dist/main",
+  "dev:server": "tsx watch ./src/main.ts",
+  "test": "tsx watch ./test/all.test.ts",
+  "lint": "eslint --fix --ext .ts src",
+  "lint:check": "eslint --ext .ts src",
+  "db:generate": "node runWithProvider.cjs \"npx prisma generate --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
+  "db:deploy": "node runWithProvider.cjs \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate deploy --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
+  "db:deploy:win": "node runWithProvider.cjs \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate deploy --schema prisma\\DATABASE_PROVIDER-schema.prisma\"",
+  "db:studio": "node runWithProvider.cjs \"npx prisma studio --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
+  "db:migrate:dev": "node runWithProvider.cjs \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate dev --schema ./prisma/DATABASE_PROVIDER-schema.prisma && cp -r ./prisma/migrations/* ./prisma/DATABASE_PROVIDER-migrations\"",
+  "db:migrate:dev:win": "node runWithProvider.cjs \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate dev --schema prisma\\DATABASE_PROVIDER-schema.prisma\""
+},
+  
+
+
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EvolutionAPI/evolution-api.git"
@@ -102,7 +106,7 @@
     "socket.io-client": "^4.8.1",
     "swagger-ui-express": "^5.0.1",
     "tsup": "^8.3.5"
-    
+
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
