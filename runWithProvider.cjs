@@ -12,7 +12,6 @@ if (!DATABASE_PROVIDER) {
 }
 
 // Função para determinar qual pasta de migrations usar
-// Função para determinar qual pasta de migrations usar
 function getMigrationsFolder(provider) {
   switch (provider) {
     case 'psql_bouncer':
@@ -33,15 +32,16 @@ let command = process.argv
 const migrationsPattern = new RegExp(`${databaseProviderDefault}-migrations`, 'g');
 command = command.replace(migrationsPattern, migrationsFolder);
 
-if (command.includes('rmdir') && existsSync('prisma\\migrations')) {
+// Corrige verificação e remoção para ambiente Linux
+if (command.includes('rm -rf') && existsSync('prisma/migrations')) {
   try {
-    execSync('rmdir /S /Q prisma\\migrations', { stdio: 'inherit' });
+    execSync('rm -rf prisma/migrations', { stdio: 'inherit' });
   } catch (error) {
-    console.error(`Error removing directory: prisma\\migrations`);
+    console.error(`Error removing directory: prisma/migrations`);
     process.exit(1);
   }
-} else if (command.includes('rmdir')) {
-  console.warn(`Directory 'prisma\\migrations' does not exist, skipping removal.`);
+} else if (command.includes('rm -rf')) {
+  console.warn(`Directory 'prisma/migrations' does not exist, skipping removal.`);
 }
 
 try {
