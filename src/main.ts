@@ -164,7 +164,8 @@ app.get("/instances", (req, res) => {
 
   httpServer.PORT = Number(process.env.PORT) || 3000;
 
-  server.listen(httpServer.PORT, () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
+  server.listen(httpServer.PORT, '0.0.0.0', () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
+
 
   initWA();
 
